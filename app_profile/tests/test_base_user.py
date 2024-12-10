@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth.forms import UserCreationForm
 from unittest import skip
 
 from proj_fix import proj_data as data, template_name as template
@@ -30,3 +31,7 @@ class UserTest(BaseUser):
         response = self.client.get(reverse(data.REGISTER_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.REGISTER_HTML)
+    
+    def test_can_get_register_form(self):
+        response = self.client.get(reverse(data.REGISTER_PATH))
+        self.assertIsInstance(response.context['form'], UserCreationForm)
