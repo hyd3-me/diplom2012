@@ -4,6 +4,7 @@
 LOGIN_PATH              = 'login'
 HOME_PATH               = 'index'
 PROFILE_PATH            = 'profile'
+REGISTER_PATH           = 'register'
 
 
 SUCCESS_LOG             = 'welcome to join us'

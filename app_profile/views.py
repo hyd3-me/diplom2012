@@ -27,4 +27,12 @@ def home_view(request):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect('about')
-    return render(request, template_name.HOME_HTML)
+    return render(request, template.HOME_HTML)
+
+def reg_view(request):
+    if not request.method == 'GET':
+        if not request.method == 'POST':
+            return redirect(data.HOME_PATH)
+    else:
+        reg_form = UserCreationForm()
+    return render(request, template.REGISTER_HTML, {'form': reg_form})

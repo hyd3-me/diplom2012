@@ -25,3 +25,8 @@ class UserTest(BaseUser):
         self.assertEqual(response.status_code, 200)
         self.assertContains(
                 response, '<a href="/register">new+</a>', html=True)
+    
+    def test_has_register_page(self):
+        response = self.client.get(reverse(data.REGISTER_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, template.REGISTER_HTML)
