@@ -21,3 +21,10 @@ def login_view(request):
     else:
         auth_form = AuthenticationForm()
     return render(request, template.LOGIN_HTML, {'form': auth_form})
+
+def home_view(request):
+    if not request.user.is_authenticated:
+        return redirect(data.LOGIN_PATH)
+    if not request.method == 'GET':
+        return redirect('about')
+    return render(request, template_name.HOME_HTML)

@@ -14,3 +14,10 @@ class UserTest(BaseUser):
         response = self.client.get(reverse(data.LOGIN_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.LOGIN_HTML)
+    
+    def test_redirect_from_home_page_to_login(self):
+        # test redirect for not auth users
+        response = self.client.get(reverse(data.HOME_PATH))
+        self.assertRedirects(response, reverse(data.LOGIN_PATH))
+        
+        # self.fail('not done')
