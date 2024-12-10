@@ -10,11 +10,18 @@ from app_profile import utils
 class BaseUser(TestCase):
 
     def reg_me(self, user_tuple=data.USER1):
-        resp1 = self.client.post(reverse(data.REGISTER_PATH), {
+        response = self.client.post(reverse(data.REGISTER_PATH), {
             'username': user_tuple[0],
             'password1':user_tuple[1],
             'password2':user_tuple[1]}, follow=True)
-        return resp1
+        return response
+    
+    def login(self, user_tuple=data.USER1):
+        response = self.client.post(reverse(data.LOGIN_PATH), {
+            'username': user_tuple[0],
+            'password': user_tuple[1]}, follow=True)
+        return response
+
 
 
 class UserTest(BaseUser):
@@ -50,3 +57,8 @@ class UserTest(BaseUser):
         err, user = utils.get_user(1)
         self.assertFalse(err)
         self.assertEqual(user.username, data.USER1[0])
+
+    def test_can_login(self):
+        err, user = utils.create_user(data.USER1)
+        response = self.login()
+        self.assertContains(response, data.SUCCESS_LOG)
