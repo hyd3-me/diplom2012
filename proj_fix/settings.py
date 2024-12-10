@@ -13,15 +13,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import random
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-@vi&h((n3fs9k9l7!7^t=%0&1c$2xl%q-(51&!g*yj=nv++@4v'
 
 def get_secret():
     try:
@@ -43,9 +40,8 @@ def test_secret():
             f.write(sk)
     return sk
 
-SECRET_KEY = test_secret()
-
 # SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = test_secret()
 
 DEBUG = True
 
@@ -64,6 +60,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # custom app
+    'app_profile',
 ]
 
 MIDDLEWARE = [
@@ -81,8 +80,8 @@ ROOT_URLCONF = 'proj_fix.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': ['templates', ],
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
