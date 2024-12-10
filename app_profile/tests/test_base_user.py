@@ -4,10 +4,18 @@ from django.contrib.auth.forms import UserCreationForm
 from unittest import skip
 
 from proj_fix import proj_data as data, template_name as template
+from app_profile import utils
 
 
 class BaseUser(TestCase):
-    pass
+
+    def reg_me(self, user_tuple=data.USER1):
+        resp1 = self.client.post(reverse(data.REGISTER_PATH), {
+            'username': user_tuple[0],
+            'password1':user_tuple[1],
+            'password2':user_tuple[1]}, follow=True)
+        return resp1
+
 
 class UserTest(BaseUser):
 
@@ -35,3 +43,10 @@ class UserTest(BaseUser):
     def test_can_get_register_form(self):
         response = self.client.get(reverse(data.REGISTER_PATH))
         self.assertIsInstance(response.context['form'], UserCreationForm)
+    
+    def test_can_register_user(self):
+        response = self.reg_me()
+        self.assertContains(response, data.PROFILE_CREATED)
+        err, user = utils.get_user(1)
+        self.assertFalse(err)
+        self.assertEqual(user.username, data.USER1[0])
