@@ -52,3 +52,9 @@ class GroupTest(BaseUser):
         form = forms.GroupCreationForm()
         self.assertContains(response, form.as_p(), html=True)
     
+    def test_can_create_group(self):
+        response = self.client.post(reverse(data.CREATE_GROUP), {
+            'name': data.GROUP1[0],
+            'group_pwd': data.GROUP1[1]
+        }, follow=True)
+        self.assertContains(response, data.GROUP_CREATED, html=True)

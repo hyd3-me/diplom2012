@@ -17,7 +17,10 @@ SUCCESS_LOG             = 'welcome to join us'
 SUCCESS_OUT             = 'we will be glad to see you'
 PROFILE_CREATED         = 'profile created'
 INVALID_FORM            = 'invalid form'
+GROUP_CREATED           = 'the group was created'
 
 ## user data for test
 USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')
 USER2   = ('testUser2forM3', ')__//P455!(')
+
+GROUP1  = ('test group name1', 'test_GR0up)_PWD1')
