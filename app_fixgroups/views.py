@@ -26,7 +26,8 @@ def create_group_view(request):
         if group_form.is_valid():
             err, group = utils.create_group(
                 group_form.cleaned_data.get('name'),
-                group_form.cleaned_data.get('group_pwd'))
+                group_form.cleaned_data.get('group_pwd'),
+                request.user)
             if not err:
                 messages.success(request, f'{data.GROUP_CREATED}')
                 return redirect(data.GROUPS_PATH)
