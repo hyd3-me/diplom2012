@@ -44,3 +44,7 @@ def check_pwd4group(group_obj, pwd):
 @try_me
 def create_staff(group_obj, user_obj):
     return 0, fix_models.Staff.objects.create(group=group_obj, user=user_obj)
+
+@try_me
+def get_staff_by_user(user_obj):
+    return 0, user_obj.staff_set.all()
