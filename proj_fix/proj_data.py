@@ -20,6 +20,8 @@ PROFILE_CREATED         = 'profile created'
 INVALID_FORM            = 'invalid form'
 GROUP_CREATED           = 'the group was created'
 GROUP_CREATION_ERR      = 'error when creating a group'
+SUCCESS_JOIN_TO_GROUP   = 'you have joined the group'
+FAILED_JOIN_TO_GROUP      = 'failed to join the group'
 
 ## user data for test
 USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')
