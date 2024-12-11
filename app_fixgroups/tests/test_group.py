@@ -72,10 +72,16 @@ class GroupTest(BaseUser):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.JOIN_GROUP_HTML)
 
-    def test_join_group_HTML_conain_form(self):
+    def test_join_group_HTML_contain_form(self):
         response = self.client.get(reverse(data.JOIN_GROUP_PATH))
-        form = forms.GroupCreationForm()
+        form = forms.GroupForm()
         self.assertContains(response, form.as_p(), html=True)
     
-    def est_can_join_to_group(self):
-        pass
+    def test_can_join_to_group(self):
+        err, user2 = utils.create_user(data.USER2)
+        err, group = utils.create_group(data.GROUP1[0], data.GROUP1[1], user2)
+        response = self.client.post(reverse(data.JOIN_GROUP_PATH), {
+            'name': data.GROUP1[0],
+            'group_pwd': data.GROUP1[1]
+        }, follow=True)
+        self.assertContains(response, data.SUCCESS_JOIN_TO_GROUP, html=True)
