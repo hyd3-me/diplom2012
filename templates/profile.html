@@ -2,7 +2,7 @@
 
 {% block userbar %}
 {% if user.is_authenticated %}
-<button class='userbar_btn btn btn_head' id='id_logout'><a href='{% url "logout" %}'>out</a></button>
+<button class='userbar_btn btn btn_head' id='id_logout'><a href='{% url "logout" %}'>logout</a></button>
 {% else %}
 <button class='userbar_btn btn btn_head' id='id_login'><a href='{% url "login" %}'>login</a></button>
 {% endif %}
