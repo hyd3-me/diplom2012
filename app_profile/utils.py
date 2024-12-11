@@ -40,3 +40,7 @@ def check_pwd4group(group_obj, pwd):
     if not status:
         return 1, group_obj
     return 0, group_obj
+
+@try_me
+def create_staff(group_obj, user_obj):
+    return 0, fix_models.Staff.objects.create(group=group_obj, user=user_obj)
