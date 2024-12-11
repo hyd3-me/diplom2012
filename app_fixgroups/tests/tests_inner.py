@@ -50,3 +50,11 @@ class StaffTest(TestCase):
         err, group_and_staff = utils.create_group_and_staff(
             data.GROUP1[0], data.GROUP1[1], user)
         self.assertEqual(group_and_staff[1].rank, 7)
+    
+    def test_can_join_group(self):
+        err, user = utils.create_user(data.USER1)
+        err, group = utils.create_group(data.GROUP1[0], data.GROUP1[1], user)
+        err, user2 = utils.create_user(data.USER2)
+        err, staff = utils.join_group(group, user2)
+        self.assertFalse(err)
+        self.assertFalse(staff.rank)
