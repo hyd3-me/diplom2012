@@ -30,9 +30,10 @@ def create_user(tupl_name_pwd=data.USER1):
         username=tupl_name_pwd[0], password=tupl_name_pwd[1])
 
 @try_me
-def create_group(name, pwd_str):
+def create_group(name, pwd_str, user_obj):
     hashed = bcrypt.hashpw(pwd_str.encode('utf-8'), bcrypt.gensalt())
-    return 0, fix_models.FixGroup.objects.create(name=name, h_pwd=hashed)
+    return 0, fix_models.FixGroup.objects.create(
+        name=name, h_pwd=hashed, owner=user_obj)
 
 @try_me
 def check_pwd4group(group_obj, pwd):
