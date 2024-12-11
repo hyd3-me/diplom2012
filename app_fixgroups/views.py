@@ -24,7 +24,7 @@ def create_group_view(request):
             return redirect(data.PROFILE_PATH)
         group_form = GroupCreationForm(request.POST)
         if group_form.is_valid():
-            err, group = utils.create_group(
+            err, group_and_staff = utils.create_group_and_staff(
                 group_form.cleaned_data.get('name'),
                 group_form.cleaned_data.get('group_pwd'),
                 request.user)
