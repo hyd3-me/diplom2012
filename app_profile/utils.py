@@ -18,6 +18,10 @@ def get_user(user_id):
     return 0, User.objects.get(id=user_id)
 
 @try_me
+def get_all_users():
+    return 0, User.objects.all()
+
+@try_me
 def create_user(tupl_name_pwd=data.USER1):
     return 0, User.objects.create_user(
         username=tupl_name_pwd[0], password=tupl_name_pwd[1])
