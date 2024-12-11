@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
-from unittest import skip
 
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
@@ -25,8 +24,6 @@ class BaseUser(TestCase):
     def logout(self):
         response = self.client.get(reverse(data.LOGOUT_PATH), follow=True)
         return response
-
-
 
 
 class UserTest(BaseUser):
