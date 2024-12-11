@@ -27,7 +27,7 @@ def home_view(request):
     if not request.user.is_authenticated:
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
-        return redirect('about')
+        return redirect(data.ABOUT_PATH)
     return render(request, template.HOME_HTML)
 
 def reg_view(request):

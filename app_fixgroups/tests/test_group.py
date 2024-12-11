@@ -7,4 +7,9 @@ from app_profile.tests.test_base_user import BaseUser
 
 
 class GroupTest(BaseUser):
-    pass
+    
+    def test_has_link_to_groups_page(self):
+        response = self.client.get(reverse(data.PROFILE_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+                response, f'<a href="{reverse(data.GROUPS_PATH)}">groups</a>', html=True)

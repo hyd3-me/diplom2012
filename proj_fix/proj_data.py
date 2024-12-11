@@ -6,6 +6,9 @@ LOGIN_PATH              = 'login'
 PROFILE_PATH            = 'profile'
 REGISTER_PATH           = 'register'
 LOGOUT_PATH             = 'logout'
+ABOUT_PATH              = 'about'
+
+GROUPS_PATH              = 'groups'
 
 
 ## message list for users
