@@ -8,6 +8,7 @@ class FixGroup(models.Model):
     h_pwd   = models.BinaryField(max_length=64)
     token   = models.CharField(max_length=124, default='')
     a_name  = models.CharField(max_length=16, default='')
+    owner   = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
 
 class Staff(models.Model):
 
