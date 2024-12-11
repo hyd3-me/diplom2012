@@ -4,6 +4,7 @@ from django.urls import reverse
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
 from app_profile.tests.test_base_user import BaseUser
+from app_fixgroups import forms
 
 
 class GroupTest(BaseUser):
@@ -34,4 +35,13 @@ class GroupTest(BaseUser):
         self.assertEqual(response.status_code, 200)
         self.assertContains(
                 response, f'<a href="{reverse(data.CREATE_GROUP)}">create group</a>', html=True)
+    
+    def test_can_get_create_group_page(self):
+        response = self.client.get(reverse(data.CREATE_GROUP))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, template.CREATE_GROUP_HTML)
+    
+    def test_can_get_create_group_form(self):
+        response = self.client.get(reverse(data.CREATE_GROUP))
+        self.assertIsInstance(response.context['form'], forms.GroupCreationForm)
     
