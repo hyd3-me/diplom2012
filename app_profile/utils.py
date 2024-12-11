@@ -7,7 +7,7 @@ from app_fixgroups import models as fix_models
 
 def try_me(fn):
     # return func resp or err
-    def do_func(*args):
+    def do_func(*args, **kwargs):
         try:
             return fn(*args)
         except Exception as e:
@@ -43,9 +43,17 @@ def check_pwd4group(group_obj, pwd):
     return 0, group_obj
 
 @try_me
-def create_staff(group_obj, user_obj):
+def create_staff(group_obj, user_obj, rank=0):
+    if rank:
+        return 0, fix_models.Staff.objects.create(group=group_obj, user=user_obj, rank=rank)
     return 0, fix_models.Staff.objects.create(group=group_obj, user=user_obj)
 
 @try_me
 def get_staff_by_user(user_obj):
     return 0, user_obj.staff_set.all()
+
+@try_me
+def create_group_and_staff(name, pwd_str, user_obj):
+    err, group = create_group(name, pwd_str, user_obj)
+    err, staff = create_staff(group, user_obj, rank=7)
+    return 0, (group, staff)
