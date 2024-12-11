@@ -66,3 +66,13 @@ class GroupTest(BaseUser):
                 response,
                 f'<a href="{reverse(data.JOIN_GROUP_PATH)}">join group</a>',
                 html=True)
+
+    def test_can_get_join_group_page(self):
+        response = self.client.get(reverse(data.JOIN_GROUP_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, template.JOIN_GROUP_HTML)
+
+    def test_join_group_HTML_conain_form(self):
+        response = self.client.get(reverse(data.JOIN_GROUP_PATH))
+        form = forms.GroupCreationForm()
+        self.assertContains(response, form.as_p(), html=True)

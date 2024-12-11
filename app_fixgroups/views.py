@@ -48,4 +48,4 @@ def join_group_view(request):
     # create form for group
     else:
         group_form = GroupCreationForm()
-    return render(request, template.CREATE_GROUP_HTML,)
+    return render(request, template.JOIN_GROUP_HTML, {'form': group_form})
