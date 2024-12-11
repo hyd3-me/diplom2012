@@ -9,10 +9,11 @@
 {% endblock %}
 
 {% block content %}
-<div>
-    <p>groups content</p>
-    <div>
-        <p>create group template</p>
-    </div>
-</div>
+{% if form %}
+<form method='POST' action='{% url "create_group" %}'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">create group</button>
+</form>
+{% endif %}
 {% endblock %}

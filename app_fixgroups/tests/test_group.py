@@ -34,7 +34,9 @@ class GroupTest(BaseUser):
         response = self.client.get(reverse(data.GROUPS_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertContains(
-                response, f'<a href="{reverse(data.CREATE_GROUP)}">create group</a>', html=True)
+                response,
+                f'<a href="{reverse(data.CREATE_GROUP)}">create group</a>',
+                html=True)
     
     def test_can_get_create_group_page(self):
         response = self.client.get(reverse(data.CREATE_GROUP))
@@ -44,4 +46,9 @@ class GroupTest(BaseUser):
     def test_can_get_create_group_form(self):
         response = self.client.get(reverse(data.CREATE_GROUP))
         self.assertIsInstance(response.context['form'], forms.GroupCreationForm)
+    
+    def test_create_group_HTML_conain_form(self):
+        response = self.client.get(reverse(data.CREATE_GROUP))
+        form = forms.GroupCreationForm()
+        self.assertContains(response, form.as_p(), html=True)
     
