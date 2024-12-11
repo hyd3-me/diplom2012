@@ -1,8 +1,8 @@
 ## this file contains data for the entire project.
 ## such as paths, messages to the user
 
-LOGIN_PATH              = 'login'
 HOME_PATH               = ''
+LOGIN_PATH              = 'login'
 PROFILE_PATH            = 'profile'
 REGISTER_PATH           = 'register'
 LOGOUT_PATH             = 'logout'
