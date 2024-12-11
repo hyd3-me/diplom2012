@@ -57,3 +57,7 @@ def create_group_and_staff(name, pwd_str, user_obj):
     err, group = create_group(name, pwd_str, user_obj)
     err, staff = create_staff(group, user_obj, 7)
     return 0, (group, staff)
+
+@try_me
+def join_group(group_obj, user_obj):
+    return create_staff(group_obj, user_obj)
