@@ -44,3 +44,9 @@ class StaffTest(TestCase):
         err, group_and_staff = utils.create_group_and_staff(
             data.GROUP1[0], data.GROUP1[1], user)
         self.assertFalse(err)
+    
+    def test_owner_has_su_rank(self):
+        err, user = utils.create_user(data.USER1)
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], user)
+        self.assertEqual(group_and_staff[1].rank, 7)
