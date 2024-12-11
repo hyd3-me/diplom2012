@@ -33,3 +33,10 @@ def create_user(tupl_name_pwd=data.USER1):
 def create_group(name, pwd_str):
     hashed = bcrypt.hashpw(pwd_str.encode('utf-8'), bcrypt.gensalt())
     return 0, fix_models.FixGroup.objects.create(name=name, h_pwd=hashed)
+
+@try_me
+def check_pwd4group(group_obj, pwd):
+    status = bcrypt.checkpw(pwd.encode('utf-8'), group_obj.h_pwd)
+    if not status:
+        return 1, group_obj
+    return 0, group_obj

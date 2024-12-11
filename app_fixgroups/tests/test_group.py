@@ -76,3 +76,6 @@ class GroupTest(BaseUser):
         response = self.client.get(reverse(data.JOIN_GROUP_PATH))
         form = forms.GroupCreationForm()
         self.assertContains(response, form.as_p(), html=True)
+    
+    def est_can_join_to_group(self):
+        pass
