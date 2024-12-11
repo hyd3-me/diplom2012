@@ -18,6 +18,7 @@ SUCCESS_OUT             = 'we will be glad to see you'
 PROFILE_CREATED         = 'profile created'
 INVALID_FORM            = 'invalid form'
 GROUP_CREATED           = 'the group was created'
+GROUP_CREATION_ERR      = 'error when creating a group'
 
 ## user data for test
 USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')

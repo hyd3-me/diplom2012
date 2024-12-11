@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 
 from proj_fix import proj_data as data, template_name as template
 from .forms import GroupCreationForm
+from app_profile import utils
 
 # Create your views here.
 
@@ -23,10 +24,16 @@ def create_group_view(request):
             return redirect(data.PROFILE_PATH)
         group_form = GroupCreationForm(request.POST)
         if group_form.is_valid():
-            group = group_form.save()
-            messages.success(request, f'{data.GROUP_CREATED}')
-            return redirect(data.GROUPS_PATH)
-        messages.error(request, f'{data.INVALID_FORM}')
+            err, group = utils.create_group(
+                group_form.cleaned_data.get('name'),
+                group_form.cleaned_data.get('group_pwd'))
+            if not err:
+                messages.success(request, f'{data.GROUP_CREATED}')
+                return redirect(data.GROUPS_PATH)
+            else:
+                messages.error(request, f'{data.GROUP_CREATION_ERR}')
+        else:
+            messages.error(request, f'{data.INVALID_FORM}')
     # create form for group
     else:
         group_form = GroupCreationForm()
