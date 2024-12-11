@@ -19,13 +19,10 @@ class GroupTest(BaseUser):
         self.assertContains(
                 response, f'<a href="{reverse(data.GROUPS_PATH)}">groups</a>', html=True)
     
-    def est_can_get_groups_page(self):
+    def test_can_get_groups_page(self):
         response = self.client.get(reverse(data.GROUPS_PATH))
-        err, user = utils.create_user(data.USER1)
-        self.login(data.USER1)
-        response = self.client.get(reverse(data.HOME_PATH))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, template.HOME_HTML)
+        self.assertTemplateUsed(response, template.GROUPS_HTML)
     
     def test_visit_only_auth_users(self):
         self.logout()
