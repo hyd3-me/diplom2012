@@ -38,3 +38,14 @@ def create_group_view(request):
     else:
         group_form = GroupCreationForm()
     return render(request, template.CREATE_GROUP_HTML, {'form': group_form})
+
+def join_group_view(request):
+    if not request.user.is_authenticated:
+        return redirect(data.LOGIN_PATH)
+    if not request.method == 'GET':
+        if not request.method == 'POST':
+            return redirect(data.PROFILE_PATH)
+    # create form for group
+    else:
+        group_form = GroupCreationForm()
+    return render(request, template.CREATE_GROUP_HTML,)

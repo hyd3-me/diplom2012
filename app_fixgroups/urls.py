@@ -5,6 +5,7 @@ from proj_fix import proj_data as data
 
 
 urlpatterns = [
-    path('',  views.groups_view, name=data.GROUPS_PATH),
-    path(data.CREATE_GROUP, views.create_group_view, name=data.CREATE_GROUP),
+    path('',                views.groups_view, name=data.GROUPS_PATH),
+    path(data.CREATE_GROUP_PATH, views.create_group_view, name=data.CREATE_GROUP_PATH),
+    path(data.JOIN_GROUP_PATH,   views.join_group_view, name=data.JOIN_GROUP_PATH)
     ]

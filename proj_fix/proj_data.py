@@ -9,7 +9,8 @@ LOGOUT_PATH             = 'logout'
 ABOUT_PATH              = 'about'
 
 GROUPS_PATH             = 'groups'
-CREATE_GROUP            = 'create_group'
+CREATE_GROUP_PATH       = 'create_group'
+JOIN_GROUP_PATH         = 'join_group'
 
 
 ## message list for users

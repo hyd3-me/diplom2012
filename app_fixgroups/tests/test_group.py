@@ -35,26 +35,34 @@ class GroupTest(BaseUser):
         self.assertEqual(response.status_code, 200)
         self.assertContains(
                 response,
-                f'<a href="{reverse(data.CREATE_GROUP)}">create group</a>',
+                f'<a href="{reverse(data.CREATE_GROUP_PATH)}">create group</a>',
                 html=True)
     
     def test_can_get_create_group_page(self):
-        response = self.client.get(reverse(data.CREATE_GROUP))
+        response = self.client.get(reverse(data.CREATE_GROUP_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.CREATE_GROUP_HTML)
     
     def test_can_get_create_group_form(self):
-        response = self.client.get(reverse(data.CREATE_GROUP))
+        response = self.client.get(reverse(data.CREATE_GROUP_PATH))
         self.assertIsInstance(response.context['form'], forms.GroupCreationForm)
     
     def test_create_group_HTML_conain_form(self):
-        response = self.client.get(reverse(data.CREATE_GROUP))
+        response = self.client.get(reverse(data.CREATE_GROUP_PATH))
         form = forms.GroupCreationForm()
         self.assertContains(response, form.as_p(), html=True)
     
     def test_can_create_group(self):
-        response = self.client.post(reverse(data.CREATE_GROUP), {
+        response = self.client.post(reverse(data.CREATE_GROUP_PATH), {
             'name': data.GROUP1[0],
             'group_pwd': data.GROUP1[1]
         }, follow=True)
         self.assertContains(response, data.GROUP_CREATED, html=True)
+    
+    def test_has_link_to_join_group(self):
+        response = self.client.get(reverse(data.GROUPS_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+                response,
+                f'<a href="{reverse(data.JOIN_GROUP_PATH)}">join group</a>',
+                html=True)
