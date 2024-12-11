@@ -83,3 +83,8 @@ class UserTest(BaseUser):
         self.assertEqual(response.status_code, 200)
         self.assertContains(
                 response, '<a href="/login">login</a>', html=True)
+    
+    def test_has_link_to_logout(self):
+        response = self.reg_me()
+        self.assertContains(
+                response, '<a href="/logout">logout</a>', html=True)
