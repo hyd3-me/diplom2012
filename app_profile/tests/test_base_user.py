@@ -53,6 +53,16 @@ class UserTest(BaseUser):
         self.assertContains(
                 response, '<a href="/login">login</a>', html=True)
     
+    def test_can_login(self):
+        err, user = utils.create_user(data.USER1)
+        response = self.login(data.USER1)
+        self.assertContains(response, data.SUCCESS_LOG)
+    
+    def test_redirect_tp_profile_after_login(self):
+        err, user = utils.create_user(data.USER1)
+        response = self.login(data.USER1)
+        self.assertRedirects(response, reverse(data.PROFILE_PATH))
+    
     def test_has_register_page(self):
         response = self.client.get(reverse(data.REGISTER_PATH))
         self.assertEqual(response.status_code, 200)
@@ -72,11 +82,6 @@ class UserTest(BaseUser):
     def test_redirect_after_register_user(self):
         response = self.reg_me()
         self.assertRedirects(response, reverse(data.PROFILE_PATH))
-
-    def test_can_login(self):
-        err, user = utils.create_user(data.USER1)
-        response = self.login(data.USER1)
-        self.assertContains(response, data.SUCCESS_LOG)
     
     def test_has_link_to_logout(self):
         response = self.reg_me()
@@ -89,15 +94,15 @@ class UserTest(BaseUser):
         response = self.logout()
         self.assertContains(response, data.SUCCESS_OUT)
     
+    def test_redirect_after_logout(self):
+        err, user = utils.create_user(data.USER1)
+        self.login(data.USER1)
+        response = self.logout()
+        self.assertRedirects(response, reverse(data.LOGIN_PATH))
+    
     def test_has_home_page(self):
         err, user = utils.create_user(data.USER1)
         self.login(data.USER1)
         response = self.client.get(reverse(data.HOME_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.HOME_HTML)
-    
-    def test_redirect_after_logout(self):
-        err, user = utils.create_user(data.USER1)
-        self.login(data.USER1)
-        response = self.logout()
-        self.assertRedirects(response, reverse(data.LOGIN_PATH))
