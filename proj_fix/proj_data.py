@@ -8,7 +8,8 @@ REGISTER_PATH           = 'register'
 LOGOUT_PATH             = 'logout'
 ABOUT_PATH              = 'about'
 
-GROUPS_PATH              = 'groups'
+GROUPS_PATH             = 'groups'
+CREATE_GROUP            = 'create_group'
 
 
 ## message list for users

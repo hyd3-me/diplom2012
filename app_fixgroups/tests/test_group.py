@@ -28,3 +28,10 @@ class GroupTest(BaseUser):
         self.logout()
         response = self.client.get(reverse(data.GROUPS_PATH))
         self.assertRedirects(response, reverse(data.LOGIN_PATH))
+    
+    def test_has_link_to_create_group(self):
+        response = self.client.get(reverse(data.GROUPS_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+                response, f'<a href="{reverse(data.CREATE_GROUP)}">create group</a>', html=True)
+    
