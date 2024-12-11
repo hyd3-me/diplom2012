@@ -2,7 +2,7 @@
 ## such as paths, messages to the user
 
 LOGIN_PATH              = 'login'
-HOME_PATH               = 'index'
+HOME_PATH               = ''
 PROFILE_PATH            = 'profile'
 REGISTER_PATH           = 'register'
 LOGOUT_PATH             = 'logout'

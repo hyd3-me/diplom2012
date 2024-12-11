@@ -21,6 +21,11 @@ class BaseUser(TestCase):
             'username': user_tuple[0],
             'password': user_tuple[1]}, follow=True)
         return response
+    
+    def logout(self):
+        response = self.client.get(reverse(data.LOGOUT_PATH), follow=True)
+        return response
+
 
 
 
@@ -60,5 +65,11 @@ class UserTest(BaseUser):
 
     def test_can_login(self):
         err, user = utils.create_user(data.USER1)
-        response = self.login()
+        response = self.login(data.USER1)
         self.assertContains(response, data.SUCCESS_LOG)
+    
+    def test_can_logout(self):
+        err, user = utils.create_user(data.USER1)
+        self.login(data.USER1)
+        response = self.logout()
+        self.assertContains(response, data.SUCCESS_OUT)
