@@ -38,3 +38,9 @@ class StaffTest(TestCase):
         err, user = utils.create_user(data.USER1)
         err, group = utils.create_group(data.GROUP1[0], data.GROUP1[1], user)
         self.assertEqual(user, group.owner)
+    
+    def test_create_group_and_staff(self):
+        err, user = utils.create_user(data.USER1)
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], user)
+        self.assertFalse(err)
