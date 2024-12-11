@@ -95,3 +95,9 @@ class UserTest(BaseUser):
         response = self.client.get(reverse(data.HOME_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.HOME_HTML)
+    
+    def test_redirect_after_logout(self):
+        err, user = utils.create_user(data.USER1)
+        self.login(data.USER1)
+        response = self.logout()
+        self.assertRedirects(response, reverse(data.LOGIN_PATH))
