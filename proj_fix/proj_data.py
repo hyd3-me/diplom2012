@@ -16,3 +16,4 @@ INVALID_FORM            = 'invalid form'
 
 ## user data for test
 USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')
+USER2   = ('testUser2forM3', ')__//P455!(')
