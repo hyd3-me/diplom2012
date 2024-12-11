@@ -11,7 +11,19 @@ class FixGroup(models.Model):
 
 class Staff(models.Model):
 
+    RANK = (
+        (0, 'Гость'),
+        (1, 'Мерч/Кас'),
+        (2, 'Админ'),
+        (7, 'su'),
+        )
+
     group   = models.ForeignKey(
         FixGroup, on_delete=models.CASCADE, null=True, blank=True)
     user    = models.ForeignKey(
         User, on_delete=models.PROTECT, null=True, blank=True)
+    rank    = models.PositiveSmallIntegerField(
+                choices=RANK,
+                default=0)
+
+    
