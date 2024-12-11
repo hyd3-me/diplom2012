@@ -61,3 +61,7 @@ def create_group_and_staff(name, pwd_str, user_obj):
 @try_me
 def join_group(group_obj, user_obj):
     return create_staff(group_obj, user_obj)
+
+@try_me
+def get_group_by_name(name):
+    return 0, fix_models.FixGroup.objects.get(name=name)
