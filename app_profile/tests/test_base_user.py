@@ -52,7 +52,7 @@ class UserTest(BaseUser):
         self.assertIsInstance(response.context['form'], UserCreationForm)
     
     def test_can_register_user(self):
-        response = self.reg_me()
+        response = self.reg_me(data.USER1)
         self.assertContains(response, data.PROFILE_CREATED)
         err, user = utils.get_user(1)
         self.assertFalse(err)
