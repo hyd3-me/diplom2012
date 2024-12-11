@@ -55,5 +55,5 @@ def get_staff_by_user(user_obj):
 @try_me
 def create_group_and_staff(name, pwd_str, user_obj):
     err, group = create_group(name, pwd_str, user_obj)
-    err, staff = create_staff(group, user_obj, rank=7)
+    err, staff = create_staff(group, user_obj, 7)
     return 0, (group, staff)
