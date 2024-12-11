@@ -62,6 +62,10 @@ class UserTest(BaseUser):
         err, user = utils.get_user(1)
         self.assertFalse(err)
         self.assertEqual(user.username, data.USER1[0])
+    
+    def test_redirect_after_register_user(self):
+        response = self.reg_me()
+        self.assertRedirects(response, reverse(data.PROFILE_PATH))
 
     def test_can_login(self):
         err, user = utils.create_user(data.USER1)
@@ -73,3 +77,9 @@ class UserTest(BaseUser):
         self.login(data.USER1)
         response = self.logout()
         self.assertContains(response, data.SUCCESS_OUT)
+    
+    def test_has_link_to_login(self):
+        response = self.client.get(reverse(data.REGISTER_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+                response, '<a href="/login">login</a>', html=True)
