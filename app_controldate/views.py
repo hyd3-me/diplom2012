@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
+from .forms import ControlDateForm
 
 # Create your views here.
 
@@ -21,11 +22,11 @@ def adddate_view(request):
     if not request.method == 'GET':
         if not request.method == 'POST':
             return redirect(data.PROFILE_PATH)
-        group_form = GroupCreationForm(request.POST)
-        if group_form.is_valid():
+        adddate_form = ControlDateForm(request.POST)
+        if adddate_form.is_valid():
             err, group_and_staff = utils.create_group_and_staff(
-                group_form.cleaned_data.get('name'),
-                group_form.cleaned_data.get('group_pwd'),
+                adddate_form.cleaned_data.get('name'),
+                adddate_form.cleaned_data.get('group_pwd'),
                 request.user)
             if not err:
                 messages.success(request, f'{data.GROUP_CREATED}')
@@ -36,5 +37,5 @@ def adddate_view(request):
             messages.error(request, f'{data.INVALID_FORM}')
     # create form for group
     else:
-        group_form = GroupCreationForm()
-    return render(request, template.CREATE_GROUP_HTML, {'form': group_form})
+        adddate_form = ControlDateForm()
+    return render(request, template.ADDDATE_HTML, {'form': adddate_form})
