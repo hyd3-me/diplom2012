@@ -21,4 +21,5 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('',        include('app_profile.urls')),
     path('groups/', include('app_fixgroups.urls')),
+    path('date/',   include('app_controldate.urls')),
 ]

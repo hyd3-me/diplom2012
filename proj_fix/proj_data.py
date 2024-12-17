@@ -12,6 +12,8 @@ GROUPS_PATH             = 'groups'
 CREATE_GROUP_PATH       = 'create_group'
 JOIN_GROUP_PATH         = 'join_group'
 
+CONTROLDATE_PATH        = 'controldate'
+
 
 ## message list for users
 SUCCESS_LOG             = 'welcome to join us'
