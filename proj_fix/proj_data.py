@@ -13,6 +13,7 @@ CREATE_GROUP_PATH       = 'create_group'
 JOIN_GROUP_PATH         = 'join_group'
 
 CONTROLDATE_PATH        = 'controldate'
+ADDDATE_PATH            = 'adddate'
 
 
 ## message list for users
