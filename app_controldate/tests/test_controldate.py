@@ -29,3 +29,8 @@ class TestControlDate(BaseUser):
                 response,
                 f'<a href="{reverse(data.ADDDATE_PATH)}">add date</a>',
                 html=True)
+
+    def test_can_get_adddate_page(self):
+        response = self.client.get(reverse(data.ADDDATE_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, template.ADDDATE_HTML)
