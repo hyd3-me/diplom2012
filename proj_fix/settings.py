@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     # custom app
     'app_profile',
     'app_fixgroups',
+    'app_controldate',
 ]
 
 MIDDLEWARE = [
