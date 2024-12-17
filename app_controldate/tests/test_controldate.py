@@ -1,11 +1,15 @@
 from django.test import TestCase
 from django.urls import reverse
+import datetime
 
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
 from app_profile.tests.test_base_user import BaseUser
 from app_controldate import forms
 
+
+def now_plus_day(day_):
+    return datetime.datetime.now() + datetime.timedelta(days=day_)
 
 class TestControlDate(BaseUser):
 
@@ -39,3 +43,12 @@ class TestControlDate(BaseUser):
     def test_can_get_adddate_form(self):
         response = self.client.get(reverse(data.ADDDATE_PATH))
         self.assertIsInstance(response.context['form'], forms.ControlDateForm)
+
+    def test_can_adddate(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        response = self.client.post(reverse(data.ADDDATE_PATH), {
+            'name': data.GOOD1,
+            'e_date': now_plus_day(3)
+        }, follow=True)
+        self.assertContains(response, data.DATE_ADDED, html=True)
