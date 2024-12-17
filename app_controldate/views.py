@@ -24,15 +24,21 @@ def adddate_view(request):
             return redirect(data.PROFILE_PATH)
         adddate_form = ControlDateForm(request.POST)
         if adddate_form.is_valid():
-            err, group_and_staff = utils.create_group_and_staff(
-                adddate_form.cleaned_data.get('name'),
-                adddate_form.cleaned_data.get('group_pwd'),
-                request.user)
+            err, staff = utils.get_staff_by_user(request.user)
             if not err:
-                messages.success(request, f'{data.GROUP_CREATED}')
-                return redirect(data.GROUPS_PATH)
+                err, group = utils.get_group_from_staff(staff[0])
+                err, date_record_obj = utils.adddate(
+                    adddate_form.cleaned_data.get('name'),
+                    adddate_form.cleaned_data.get('e_date'),
+                    request.user,
+                    group)
+                if not err:
+                    messages.success(request, f'{data.DATE_ADDED}')
+                    return redirect(data.CONTROLDATE_PATH)
+                else:
+                    messages.error(request, f'{data.ADDDATE_ERROR}')
             else:
-                messages.error(request, f'{data.GROUP_CREATION_ERR}')
+                messages.error(request, f'{data.NOT_STAFF_ERROR}')
         else:
             messages.error(request, f'{data.INVALID_FORM}')
     # create form for group
