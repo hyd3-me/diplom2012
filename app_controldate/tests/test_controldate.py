@@ -22,3 +22,10 @@ class TestControlDate(BaseUser):
         response = self.client.get(reverse(data.CONTROLDATE_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.CONTROLDATE_HTML)
+
+    def test_has_link_to_adddate(self):
+        response = self.client.get(reverse(data.CONTROLDATE_PATH))
+        self.assertContains(
+                response,
+                f'<a href="{reverse(data.ADDDATE_PATH)}">add date</a>',
+                html=True)
