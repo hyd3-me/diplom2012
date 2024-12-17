@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if form %}
+<form method='POST' action='{% url "adddate" %}'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">add date</button>
+</form>
+{% endif %}
+{% endblock %}
