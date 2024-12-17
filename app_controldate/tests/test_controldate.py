@@ -17,4 +17,8 @@ class TestControlDate(BaseUser):
         response = self.client.get(reverse(data.PROFILE_PATH))
         self.assertContains(
                 response, f'<a href="{reverse(data.CONTROLDATE_PATH)}">control date</a>', html=True)
-    
+
+    def test_can_get_controldate_page(self):
+        response = self.client.get(reverse(data.CONTROLDATE_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, template.CONTROLDATE_HTML)
