@@ -3,6 +3,7 @@ import bcrypt
 
 from proj_fix import proj_data as data
 from app_fixgroups import models as fix_models
+from app_controldate import models as cd_models
 
 
 def try_me(fn):
@@ -44,9 +45,7 @@ def check_pwd4group(group_obj, pwd):
 
 @try_me
 def create_staff(group_obj, user_obj, rank=0):
-    if rank:
-        return 0, fix_models.Staff.objects.create(group=group_obj, user=user_obj, rank=rank)
-    return 0, fix_models.Staff.objects.create(group=group_obj, user=user_obj)
+    return 0, fix_models.Staff.objects.create(group=group_obj, user=user_obj, rank=rank)
 
 @try_me
 def get_staff_by_user(user_obj):
@@ -65,3 +64,12 @@ def join_group(group_obj, user_obj):
 @try_me
 def get_group_by_name(name):
     return 0, fix_models.FixGroup.objects.get(name=name)
+
+@try_me
+def adddate(name, end_date, user, group):
+    return 0, cd_models.ControlDate.objects.create(
+        name=name, e_date=end_date, owner=user, group=group)
+
+@try_me
+def get_group_from_staff(staff):
+    return 0, staff.group
