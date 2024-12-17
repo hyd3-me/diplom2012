@@ -4,6 +4,7 @@ from django.urls import reverse
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
 from app_profile.tests.test_base_user import BaseUser
+from app_controldate import forms
 
 
 class TestControlDate(BaseUser):
@@ -34,3 +35,7 @@ class TestControlDate(BaseUser):
         response = self.client.get(reverse(data.ADDDATE_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.ADDDATE_HTML)
+
+    def test_can_get_adddate_form(self):
+        response = self.client.get(reverse(data.ADDDATE_PATH))
+        self.assertIsInstance(response.context['form'], forms.ControlDateForm)
