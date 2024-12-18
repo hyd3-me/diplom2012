@@ -105,3 +105,7 @@ def create_revision(name, group_obj):
 @try_me
 def create_list(name, revision):
     return 0, rev_models.List.objects.create(name=name, revision=revision)
+
+@try_me
+def get_revision_by_id(revision_id):
+    return 0, rev_models.Revision.objects.get(pk=revision_id)
