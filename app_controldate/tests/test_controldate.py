@@ -77,3 +77,14 @@ class TestControlDate(BaseUser):
         response = self.client.get(reverse(data.RECORDSDATE_PATH))
         self.assertContains(response, data.GOOD1, html=True)
         self.assertContains(response, data.GOOD2, html=True)
+    
+    def test_has_red_col_for_today_rec(self):
+        err, e_date = utils.now_plus_day(0)
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, records = utils.adddate(
+            data.GOOD1, e_date, group_and_staff[1], group_and_staff[0]
+        )
+        response = self.client.get(reverse(data.RECORDSDATE_PATH))
+        span_tag_red_col = 'red_col'
+        self.assertContains(response, span_tag_red_col)
