@@ -16,6 +16,8 @@ CONTROLDATE_PATH        = 'controldate'
 ADDDATE_PATH            = 'adddate'
 RECORDSDATE_PATH        = 'recordsdate'
 
+REVISION_PATH           = 'revision'
+
 
 ## message list for users
 SUCCESS_LOG             = 'welcome to join us'
