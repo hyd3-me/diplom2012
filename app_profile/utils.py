@@ -79,3 +79,7 @@ def adddate(name, end_date, staff, group):
 @try_me
 def get_group_from_staff(staff):
     return 0, staff.group
+
+@try_me
+def get_end_date_by_group(group):
+    return 0, cd_models.ControlDate.objects.filter(group=group)
