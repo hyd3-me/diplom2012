@@ -18,3 +18,10 @@ class RevisionTest(TestCase):
         err, revision = utils.create_revision(today, self.group_and_staff[0])
         self.assertFalse(err)
         self.assertEqual(revision.name, today)
+    
+    def test_can_create_list(self):
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, self.group_and_staff[0])
+        err, list_ = utils.create_list(data.LIST1, revision)
+        self.assertFalse(err)
+        self.assertEqual(list_.name, data.LIST1)
