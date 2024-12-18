@@ -38,6 +38,7 @@ USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')
 USER2   = ('testUser2forM3', ')__//P455!(')
 
 GROUP1  = ('test group name1', 'test_GR0up)_PWD1')
+GROUP2  = ('test group name2', 'test_GR0up)_PWD2')
 
 ## controldate data
 GOOD1   = 'good_name1'
