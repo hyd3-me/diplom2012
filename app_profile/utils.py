@@ -82,4 +82,4 @@ def get_group_from_staff(staff):
 
 @try_me
 def get_end_date_by_group(group):
-    return 0, cd_models.ControlDate.objects.filter(group=group)
+    return 0, cd_models.ControlDate.objects.filter(group=group).order_by('e_date')
