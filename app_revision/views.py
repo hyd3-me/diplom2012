@@ -13,7 +13,7 @@ def revision_view(request, pk):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
-    return render(request, template.REVISION_HTML)
+    return render(request, template.REVISION_HTML, {'revision_id': pk})
 
 def create_revision_view(request, pk):
     if not request.user.is_authenticated:
@@ -40,3 +40,10 @@ def create_revision_view(request, pk):
     else:
         revision_form = CreateRevisionForm()
     return render(request, template.CREATEREVISION_HTML, {'form': revision_form, 'group_id': pk})
+
+def create_list_view(request, pk):
+    if not request.user.is_authenticated:
+        return redirect(data.LOGIN_PATH)
+    if not request.method == 'GET':
+        return redirect(data.ABOUT_PATH)
+    return render(request, template.CREATE_LIST_HTML, {'revision_id': pk})
