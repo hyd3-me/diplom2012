@@ -10,7 +10,7 @@
     {% if groups %}
     <ul>
         {% for group in groups %}
-        <li>{{ group.name }}</li>
+        <li><a href="{% url 'mygroup' group.pk %}">{{ group.name }}</a></li>
         {% endfor %}
     </ul>
     {% endif %}
