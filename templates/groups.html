@@ -7,5 +7,12 @@
         <a href='{% url "create_group" %}'>create group</a>
         <a href='{% url "join_group" %}'>join group</a>
     </div>
+    {% if groups %}
+    <ul>
+        {% for group in groups %}
+        <li>{{ group.name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 </div>
 {% endblock %}
