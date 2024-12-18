@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <p>mygroup content</p>
+    <div>
+    </div>
+    {% if revisions %}
+    <ul>
+        {% for revision in revisions %}
+        <li><a href="{% url 'mygroup' group.pk %}">{{ group.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
