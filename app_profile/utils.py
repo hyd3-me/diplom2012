@@ -66,9 +66,9 @@ def get_group_by_name(name):
     return 0, fix_models.FixGroup.objects.get(name=name)
 
 @try_me
-def adddate(name, end_date, user, group):
+def adddate(name, end_date, staff, group):
     return 0, cd_models.ControlDate.objects.create(
-        name=name, e_date=end_date, owner=user, group=group)
+        name=name, e_date=end_date, owner=staff, group=group)
 
 @try_me
 def get_group_from_staff(staff):
