@@ -85,3 +85,12 @@ class GroupTest(BaseUser):
             'group_pwd': data.GROUP1[1]
         }, follow=True)
         self.assertContains(response, data.SUCCESS_JOIN_TO_GROUP, html=True)
+
+    def test_can_view_my_groups(self):
+        err, group_and_staff1 = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, group_and_staff2 = utils.create_group_and_staff(
+            data.GROUP2[0], data.GROUP2[1], self.user)
+        response = self.client.get(reverse(data.GROUPS_PATH))
+        self.assertContains(response, data.GROUP1[0], html=True)
+        self.assertContains(response, data.GROUP2[0], html=True)
