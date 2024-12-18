@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'app_profile',
     'app_fixgroups',
     'app_controldate',
+    'app_revision',
 ]
 
 MIDDLEWARE = [
