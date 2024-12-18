@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <p>create_list content</p>
+    {% if revision_id %}
+    <a href='{% url "create_list" revision_id %}'>create list</a>
+    {% endif %}
+</div>
+{% endblock %}
