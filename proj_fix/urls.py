@@ -16,11 +16,12 @@ Including another URLconf
 """
 #from django.contrib import admin
 from django.urls import path, include
+from proj_fix import proj_data as data
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('',                    include('app_profile.urls')),
     path('groups/',             include('app_fixgroups.urls')),
     path('date/',               include('app_controldate.urls')),
-    path('revision<int:pk>/',   include('app_revision.urls')),
+    path(f'{data.REVISION_PATH}/<int:pk>/', include('app_revision.urls')),
 ]
