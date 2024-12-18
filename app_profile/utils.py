@@ -5,6 +5,7 @@ import datetime
 from proj_fix import proj_data as data
 from app_fixgroups import models as fix_models
 from app_controldate import models as cd_models
+from app_revision import models as rev_models
 
 
 def try_me(fn):
@@ -92,3 +93,7 @@ def get_end_date_by_group(group):
 def get_qs_groups_by_user(user):
     err, qs_staff = get_staff_by_user(user)
     return 0, [staff.group for staff in qs_staff]
+
+@try_me
+def create_revision(name, group_obj):
+    return 0, rev_models.Revision.objects.create(name=name, group=group_obj)
