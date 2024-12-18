@@ -26,4 +26,4 @@ def create_revision_view(request, pk):
     # create form for group
     else:
         revision_form = CreateRevisionForm()
-    return render(request, template.CREATEREVISION_HTML, {'form': revision_form})
+    return render(request, template.CREATEREVISION_HTML, {'form': revision_form, 'group_id': pk})
