@@ -58,6 +58,22 @@ class TestControlDate(BaseUser):
                 html=True)
 
     def test_can_get_recordsdate_page(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
         response = self.client.get(reverse(data.RECORDSDATE_PATH))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.RECORDSDATE_HTML)
+    
+    def test_can_get_end_date_records_on_page(self):
+        err, e_date = utils.now_plus_day(3)
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, records = utils.adddate(
+            data.GOOD1, e_date, group_and_staff[1], group_and_staff[0]
+        )
+        err, records2 = utils.adddate(
+            data.GOOD2, e_date, group_and_staff[1], group_and_staff[0]
+        )
+        response = self.client.get(reverse(data.RECORDSDATE_PATH))
+        self.assertContains(response, data.GOOD1, html=True)
+        self.assertContains(response, data.GOOD2, html=True)
