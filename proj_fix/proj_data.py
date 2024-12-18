@@ -11,6 +11,7 @@ ABOUT_PATH              = 'about'
 GROUPS_PATH             = 'groups'
 CREATE_GROUP_PATH       = 'create_group'
 JOIN_GROUP_PATH         = 'join_group'
+MYGROUP_PATH            = 'mygroup'
 
 CONTROLDATE_PATH        = 'controldate'
 ADDDATE_PATH            = 'adddate'
