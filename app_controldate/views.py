@@ -45,3 +45,10 @@ def adddate_view(request):
     else:
         adddate_form = ControlDateForm()
     return render(request, template.ADDDATE_HTML, {'form': adddate_form})
+
+def recordsdate_view(request):
+    if not request.user.is_authenticated:
+        return redirect(data.LOGIN_PATH)
+    if not request.method == 'GET':
+        return redirect(data.ABOUT_PATH)
+    return render(request, template.RECORDSDATE_HTML)
