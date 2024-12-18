@@ -40,3 +40,4 @@ GROUP1  = ('test group name1', 'test_GR0up)_PWD1')
 ## controldate data
 GOOD1   = 'good_name1'
 GOOD2   = 'good_name2'
+GOOD3   = 'good_name3'
