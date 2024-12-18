@@ -34,3 +34,11 @@ class TestRevision(BaseUser):
         response = self.client.get(reverse(data.CREATE_REVISION_PATH, args=[group_and_staff[0].pk]))
         form = forms.CreateRevisionForm()
         self.assertContains(response, form.as_p(), html=True)
+    
+    def test_can_create_revision_via_http(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        url = reverse(data.CREATE_REVISION_PATH, args=[group_and_staff[0].pk])
+        response = self.client.post(url, {
+            'name': utils.get_today(), }, follow=True)
+        self.assertRedirects(response, reverse(data.MYGROUP_PATH, args=[group_and_staff[0].pk]))
