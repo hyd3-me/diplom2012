@@ -94,3 +94,10 @@ class GroupTest(BaseUser):
         response = self.client.get(reverse(data.GROUPS_PATH))
         self.assertContains(response, data.GROUP1[0], html=True)
         self.assertContains(response, data.GROUP2[0], html=True)
+    
+    def test_has_link_to_my_group(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        response = self.client.get(reverse(data.GROUPS_PATH))
+        self.assertContains(
+                response, f'<a href="{reverse(data.MYGROUP_PATH, args=[group_and_staff[0].pk])}">{group_and_staff[0].name}</a>', html=True)
