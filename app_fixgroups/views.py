@@ -14,7 +14,8 @@ def groups_view(request):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
-    return render(request, template.GROUPS_HTML)
+    err, groups = utils.get_qs_groups_by_user(request.user)
+    return render(request, template.GROUPS_HTML, {'groups': groups})
 
 def create_group_view(request):
     if not request.user.is_authenticated:
