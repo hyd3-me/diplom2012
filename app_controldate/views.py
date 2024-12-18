@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import login, logout, authenticate
 
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
