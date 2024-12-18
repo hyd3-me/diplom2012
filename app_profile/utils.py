@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 import bcrypt
+import datetime
 
 from proj_fix import proj_data as data
 from app_fixgroups import models as fix_models
@@ -16,6 +17,11 @@ def try_me(fn):
             print(e)
             return 1, e
     return do_func
+
+@try_me
+def now_plus_day(day_):
+    time_zone_plus3 = datetime.timezone(datetime.timedelta(hours=3))
+    return 0, datetime.datetime.now(tz=time_zone_plus3) + datetime.timedelta(days=day_)
 
 @try_me
 def get_user(user_id):
