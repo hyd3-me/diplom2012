@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if form %}
+<form method='POST' action='{% url "create_revision" group_id %}'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">create revision</button>
+</form>
+{% endif %}
+{% endblock %}
