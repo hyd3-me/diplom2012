@@ -101,3 +101,7 @@ def get_qs_groups_by_user(user):
 @try_me
 def create_revision(name, group_obj):
     return 0, rev_models.Revision.objects.create(name=name, group=group_obj)
+
+@try_me
+def create_list(name, revision):
+    return 0, rev_models.List.objects.create(name=name, revision=revision)
