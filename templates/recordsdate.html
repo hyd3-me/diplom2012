@@ -3,8 +3,25 @@
 {% block content %}
 <div>
     <p>records content</p>
-    <div>
-        <p>records list here</p>
-    </div>
+    {% if end_date_list %}
+    {% now "Y-m-d" as today %}
+        <div class='div_grid'>
+        {% for rec in end_date_list %}
+                <div class='flex_div div1_block'>
+                        <span class='date_span
+                        {% if rec.e_date|date:"Y-m-d" > today %}
+                            whe_col
+                        {% else %}
+                            red_col
+                        {% endif %}
+                                '>{{ rec.e_date|date:"M d" }}</span></div>
+                <div class='flex_div div2_block'><span>{{ rec.name }}</span></div>
+                <div class='flex_div div3_block'>
+			<span>{{ rec.owner }}</span>
+                </div>
+        {% endfor %}
+        </div>
+{% endif %}
+
 </div>
 {% endblock %}
