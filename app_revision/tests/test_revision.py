@@ -4,6 +4,7 @@ from django.urls import reverse
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
 from app_profile.tests.test_base_user import BaseUser
+from app_revision import forms
 
 
 class TestRevision(BaseUser):
@@ -26,3 +27,10 @@ class TestRevision(BaseUser):
         response = self.client.get(reverse(data.CREATE_REVISION_PATH, args=[group_and_staff[0].pk]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.CREATEREVISION_HTML)
+
+    def test_create_revision_HTML_contain_form(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        response = self.client.get(reverse(data.CREATE_REVISION_PATH, args=[group_and_staff[0].pk]))
+        form = forms.CreateRevisionForm()
+        self.assertContains(response, form.as_p(), html=True)
