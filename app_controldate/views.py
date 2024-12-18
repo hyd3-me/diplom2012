@@ -30,7 +30,7 @@ def adddate_view(request):
                 err, date_record_obj = utils.adddate(
                     adddate_form.cleaned_data.get('name'),
                     adddate_form.cleaned_data.get('e_date'),
-                    request.user,
+                    staff[0],
                     group)
                 if not err:
                     messages.success(request, f'{data.DATE_ADDED}')
