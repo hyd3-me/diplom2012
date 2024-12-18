@@ -4,6 +4,9 @@
 <div>
     <p>mygroup content</p>
     <div>
+        {% if group_id %}
+        <a href="{% url 'create_revision' group_id %}">create revision</a>
+        {% endif %}
     </div>
     {% if revisions %}
     <ul>
