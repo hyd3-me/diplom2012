@@ -24,6 +24,10 @@ def now_plus_day(day_):
     return 0, datetime.datetime.now(tz=time_zone_plus3) + datetime.timedelta(days=day_)
 
 @try_me
+def get_today():
+    return 0, datetime.date.today().isoformat()
+
+@try_me
 def get_user(user_id):
     return 0, User.objects.get(id=user_id)
 
