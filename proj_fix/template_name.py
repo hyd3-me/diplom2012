@@ -14,3 +14,4 @@ RECORDSDATE_HTML    = 'recordsdate.html'
 
 CREATEREVISION_HTML = 'create_revision.html'
 REVISION_HTML       = 'revision.html'
+CREATE_LIST_HTML    = 'create_list.html'
