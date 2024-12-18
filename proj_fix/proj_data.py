@@ -26,14 +26,19 @@ SUCCESS_LOG             = 'welcome to join us'
 SUCCESS_OUT             = 'we will be glad to see you'
 PROFILE_CREATED         = 'profile created'
 INVALID_FORM            = 'invalid form'
+
 GROUP_CREATED           = 'the group was created'
 GROUP_CREATION_ERR      = 'error when creating a group'
 SUCCESS_JOIN_TO_GROUP   = 'you have joined the group'
 FAILED_JOIN_TO_GROUP    = 'failed to join the group'
+GROUP_NOT_FOUND         = 'the group was not found'
 
 DATE_ADDED              = 'date added'
 NOT_STAFF_ERROR         = 'the user is not staff member'
 ADDDATE_ERROR           = 'couldn"t add a date'
+
+CREATE_REVISION_FAILED  = 'failed to create a revision'
+CREATE_REVISION_SUCCESS = 'the revision was successfully created'
 
 ## user data for test
 USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')
