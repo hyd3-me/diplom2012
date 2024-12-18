@@ -52,3 +52,10 @@ class TestControlDate(BaseUser):
             'e_date': now_plus_day(3)
         }, follow=True)
         self.assertContains(response, data.DATE_ADDED, html=True)
+
+    def test_has_link_to_adddate(self):
+        response = self.client.get(reverse(data.CONTROLDATE_PATH))
+        self.assertContains(
+                response,
+                f'<a href="{reverse(data.RECORDSDATE_PATH)}">my records</a>',
+                html=True)
