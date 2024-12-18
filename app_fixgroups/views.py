@@ -70,3 +70,10 @@ def join_group_view(request):
     else:
         group_form = GroupForm()
     return render(request, template.JOIN_GROUP_HTML, {'form': group_form})
+
+def mygroup_view(request, pk):
+    if not request.user.is_authenticated:
+        return redirect(data.LOGIN_PATH)
+    if not request.method == 'GET':
+        return redirect(data.ABOUT_PATH)
+    return render(request, template.MYGROUP_HTML)
