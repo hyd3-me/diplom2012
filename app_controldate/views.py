@@ -51,4 +51,7 @@ def recordsdate_view(request):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
-    return render(request, template.RECORDSDATE_HTML)
+    err, staff = utils.get_staff_by_user(request.user)
+    err, group = utils.get_group_from_staff(staff[0])
+    err, end_date_list = utils.get_end_date_by_group(group)
+    return render(request, template.RECORDSDATE_HTML, {'end_date_list': end_date_list})
