@@ -14,6 +14,7 @@ JOIN_GROUP_PATH         = 'join_group'
 
 CONTROLDATE_PATH        = 'controldate'
 ADDDATE_PATH            = 'adddate'
+RECORDSDATE_PATH        = 'recordsdate'
 
 
 ## message list for users
