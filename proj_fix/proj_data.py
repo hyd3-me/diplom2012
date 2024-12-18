@@ -18,6 +18,7 @@ ADDDATE_PATH            = 'adddate'
 RECORDSDATE_PATH        = 'recordsdate'
 
 REVISION_PATH           = 'revision'
+CREATE_REVISION_PATH    = 'create_revision'
 
 
 ## message list for users
