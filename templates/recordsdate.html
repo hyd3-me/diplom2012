@@ -10,11 +10,11 @@
                 <div class='flex_div div1_block'>
                         <span class='date_span
                         {% if rec.e_date|date:"Y-m-d" > today %}
-                            whe_col
+                        whe_col
                         {% else %}
-                            red_col
+                        red_col
                         {% endif %}
-                                '>{{ rec.e_date|date:"M d" }}</span></div>
+                        '>{{ rec.e_date|date:"M d" }}</span></div>
                 <div class='flex_div div2_block'><span>{{ rec.name }}</span></div>
                 <div class='flex_div div3_block'>
 			<span>{{ rec.owner }}</span>
