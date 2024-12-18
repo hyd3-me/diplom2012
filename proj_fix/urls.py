@@ -23,5 +23,5 @@ urlpatterns = [
     path('',                    include('app_profile.urls')),
     path('groups/',             include('app_fixgroups.urls')),
     path('date/',               include('app_controldate.urls')),
-    path(f'{data.REVISION_PATH}/<int:pk>/', include('app_revision.urls')),
+    path(f'{data.REVISION_PATH}/',  include('app_revision.urls')),
 ]
