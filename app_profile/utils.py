@@ -83,3 +83,8 @@ def get_group_from_staff(staff):
 @try_me
 def get_end_date_by_group(group):
     return 0, cd_models.ControlDate.objects.filter(group=group).order_by('e_date')
+
+@try_me
+def get_qs_groups_by_user(user):
+    err, qs_staff = get_staff_by_user(user)
+    return 0, [staff.group for staff in qs_staff]
