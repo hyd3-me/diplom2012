@@ -13,3 +13,8 @@ class Revision(models.Model):
 
     class Meta:
         ordering = ['-name']
+
+class List(models.Model):
+
+    name = models.CharField(verbose_name='имя списка', max_length=32)
+    revision = models.ForeignKey(Revision, on_delete=models.CASCADE)
