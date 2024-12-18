@@ -59,3 +59,8 @@ class TestControlDate(BaseUser):
                 response,
                 f'<a href="{reverse(data.RECORDSDATE_PATH)}">my records</a>',
                 html=True)
+
+    def test_can_get_recordsdate_page(self):
+        response = self.client.get(reverse(data.RECORDSDATE_PATH))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, template.RECORDSDATE_HTML)
