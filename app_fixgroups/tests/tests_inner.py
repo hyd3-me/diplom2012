@@ -17,6 +17,17 @@ class GroupTest(TestCase):
         err, group = utils.create_group(data.GROUP1[0], data.GROUP1[1], user)
         err, group = utils.check_pwd4group(group, 'anyWrongPWD')
         self.assertTrue(err)
+    
+    def test_can_get_groups_by_user(self):
+        err, user = utils.create_user(data.USER1)
+        err, group_and_staff1 = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], user)
+        err, group_and_staff2 = utils.create_group_and_staff(
+            data.GROUP2[0], data.GROUP2[1], user)
+        err, query_set_groups = utils.get_qs_groups_by_user(user)
+        self.assertFalse(err)
+        self.assertIn(group_and_staff1[0], query_set_groups)
+        self.assertIn(group_and_staff2[0], query_set_groups)
 
 class StaffTest(TestCase):
 
