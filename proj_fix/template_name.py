@@ -11,3 +11,5 @@ MYGROUP_HTML        = 'mygroup.html'
 CONTROLDATE_HTML    = 'controldate.html'
 ADDDATE_HTML        = 'adddate.html'
 RECORDSDATE_HTML    = 'recordsdate.html'
+
+CREATEREVISION_HTML = 'create_revision.html'
