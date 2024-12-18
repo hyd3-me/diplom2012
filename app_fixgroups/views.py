@@ -76,4 +76,4 @@ def mygroup_view(request, pk):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
-    return render(request, template.MYGROUP_HTML)
+    return render(request, template.MYGROUP_HTML, {'group_id': pk})
