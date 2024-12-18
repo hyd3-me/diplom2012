@@ -52,3 +52,5 @@ GROUP2  = ('test group name2', 'test_GR0up)_PWD2')
 GOOD1   = 'good_name1'
 GOOD2   = 'good_name2'
 GOOD3   = 'good_name3'
+
+LIST1   = 'list_name1'
