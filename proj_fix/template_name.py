@@ -9,3 +9,4 @@ JOIN_GROUP_HTML     = 'join_group.html'
 
 CONTROLDATE_HTML    = 'controldate.html'
 ADDDATE_HTML        = 'adddate.html'
+RECORDSDATE_HTML    = 'recordsdate.html'
