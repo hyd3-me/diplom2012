@@ -3,7 +3,7 @@ from django.contrib import messages
 
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
-from .forms import CreateRevisionForm, CreateListForm
+from .forms import CreateRevisionForm, CreateListForm, CreateRecordForm
 
 # Create your views here.
 
@@ -76,4 +76,5 @@ def create_record_view(request, pk):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
-    return render(request, template.CREATE_RECORD_HTML)
+    record_form = CreateRecordForm()
+    return render(request, template.CREATE_RECORD_HTML, {'form': record_form, 'list_id': pk})
