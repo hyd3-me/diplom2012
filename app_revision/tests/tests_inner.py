@@ -19,6 +19,17 @@ class RevisionTest(TestCase):
         self.assertFalse(err)
         self.assertEqual(revision.name, today)
     
+    def test_can_get_all_revisions_from_group(self):
+        err, today = utils.get_today()
+        err, revision1 = utils.create_revision(today, self.group_and_staff[0])
+        err, qs_revisions = utils.get_all_revisions_from_group(self.group_and_staff[0])
+        self.assertFalse(err)
+        self.assertEqual(qs_revisions.count(), 1)
+        err, revision2 = utils.create_revision(today, self.group_and_staff[0])
+        err, qs_revisions = utils.get_all_revisions_from_group(self.group_and_staff[0])
+        self.assertFalse(err)
+        self.assertEqual(qs_revisions.count(), 2)
+    
     def test_can_create_list(self):
         err, today = utils.get_today()
         err, revision = utils.create_revision(today, self.group_and_staff[0])
