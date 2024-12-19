@@ -2,5 +2,7 @@
 
 {% block content %}
 <p>list</p>
-
+{% if list_id %}
+<a href='{% url "create_record" list_id %}'>create record</a>
+{% endif %}
 {% endblock %}
