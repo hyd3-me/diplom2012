@@ -103,3 +103,23 @@ def create_record_view(request, pk):
             messages.error(request, f'{data.INVALID_FORM}')
     record_form = CreateRecordForm()
     return render(request, template.CREATE_RECORD_HTML, {'form': record_form, 'list_id': pk})
+
+def search_record_view(request):
+    if not request.user.is_authenticated:
+        return redirect(data.LOGIN_PATH)
+    if not request.method == 'GET':
+        return redirect(data.ABOUT_PATH)
+    barcode = request.GET.get('barcode')
+    revision_id = request.GET.get('revision_id')
+    if not revision_id or not barcode:
+        messages.error(request, f'{data.INSUFFICIENT_DATA}')
+        return redirect(data.ABOUT_PATH)
+    err, revision = utils.get_revision_by_id(revision_id)
+    if err:
+        messages.error(request, f'{data.REVISION_NOT_FOUND}')
+        return redirect(data.ABOUT_PATH)
+    err, qs_records = utils.find_records_from_revision(revision, barcode)
+    if err:
+        messages.error(request, f'{data.GET_RECORDS_ERROR}')
+        return redirect(data.ABOUT_PATH)
+    return render(request, template.SEARCH_RECORD_HTML, {'records': qs_records})
