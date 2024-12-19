@@ -72,7 +72,9 @@ def list_view(request, pk):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
-    return render(request, template.LIST_HTML, {'list_id': pk})
+    err, _list = utils.get_list_by_id(pk)
+    err, qs_records = utils.get_all_records_from_list(_list)
+    return render(request, template.LIST_HTML, {'list_id': pk, 'qs_records': qs_records})
 
 def create_record_view(request, pk):
     if not request.user.is_authenticated:
