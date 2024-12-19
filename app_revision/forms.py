@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Revision, List
+from .models import Revision, List, Record
 
 
 class CreateRevisionForm(forms.ModelForm):
@@ -16,5 +16,14 @@ class CreateListForm(forms.ModelForm):
         model = List
         fields = ('name',)
         widgets = {
+                'name': forms.TextInput(attrs={'autofocus': ''})
+                }
+
+class CreateRecordForm(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = ('name', 'barcode', 'count', 'note')
+        widgets = {
+                'note': forms.Textarea(attrs={'rows':3}),
                 'name': forms.TextInput(attrs={'autofocus': ''})
                 }
