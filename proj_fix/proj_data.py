@@ -63,6 +63,7 @@ GOOD2   = 'good_name2'
 GOOD3   = 'good_name3'
 
 LIST1   = 'list_name1'
+LIST2   = 'list_name2'
 
 RECORD1     = 'record1'
 
