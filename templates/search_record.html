@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>search records</p>
+{% if records %}
+<ul>
+    {% for record in records %}
+    <li>{{ record.record.name }} - {{ record.record.count }} in {{ record.list.name }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
