@@ -59,3 +59,11 @@ GOOD2   = 'good_name2'
 GOOD3   = 'good_name3'
 
 LIST1   = 'list_name1'
+
+RECORD1     = 'record1'
+
+GOOD_COUNT1 = '3'
+TEST_NOTE1  = 'test_note1'
+BARCODE1    = '4630097515048'
+BARCODE2    = '4630058425539'
+BARCODE3    = '4665302645630'
