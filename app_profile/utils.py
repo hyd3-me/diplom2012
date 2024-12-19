@@ -119,6 +119,9 @@ def get_all_lists_from_revision(revision_obj):
     return 0, revision_obj.list_set.all()
 
 @try_me
+def get_all_records_from_list(list_obj):
+    return 0, list_obj.record_set.all()
+@try_me
 def create_record(name, barcode, count, note, list_obj, staff_obj):
     return 0, rev_models.Record.objects.create(
         name = name,
