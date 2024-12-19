@@ -27,3 +27,8 @@ class CreateRecordForm(forms.ModelForm):
                 'note': forms.Textarea(attrs={'rows':3}),
                 'name': forms.TextInput(attrs={'autofocus': ''})
                 }
+
+class SearchRecordForm(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = ('barcode', )
