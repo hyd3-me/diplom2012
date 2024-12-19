@@ -2,7 +2,15 @@
 
 {% block content %}
 <div>
-    <p>create_list content</p>
+    {% if form %}
+    <form method="get" action="{% url 'search_record' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="revision_id" value="{{ revision_id }}">
+        <button type="submit">find</button>
+    </form>
+    {% endif %}
+    <p>revision content</p>
     {% if revision_id %}
     <a href='{% url "create_list" revision_id %}'>create list</a>
     {% endif %}
