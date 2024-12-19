@@ -107,7 +107,6 @@ class TestRevision(BaseUser):
         err, _list2 = utils.create_list(data.LIST2, revision)
         response = self.client.get(reverse(data.REVISION_PATH, args=[revision.pk]))
         self.assertContains(response, _list1.name)
-        pass
     
     def test_can_get_list_page(self):
         err, group_and_staff = utils.create_group_and_staff(
@@ -168,6 +167,20 @@ class TestRevision(BaseUser):
             }, follow=True)
         self.assertRedirects(response, reverse(data.CREATE_RECORD_PATH, args=[_list.pk]))
         self.assertContains(response, data.CREATE_RECORD_SUCCESS)
+    
+    def test_can_get_created_record_on_list_page(self):
+        err, self.group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, self.group_and_staff[0])
+        err, _list1 = utils.create_list(data.LIST1, revision)
+        err, record1 = utils.create_record(data.RECORD1, data.BARCODE1, data.GOOD_COUNT1, data.TEST_NOTE1, _list1, self.group_and_staff[1])
+        err, record2 = utils.create_record(data.RECORD1, data.BARCODE1, data.GOOD_COUNT1, data.TEST_NOTE1, _list1, self.group_and_staff[1])
+        err, record3 = utils.create_record(data.RECORD2, data.BARCODE2, data.GOOD_COUNT1, data.TEST_NOTE1, _list1, self.group_and_staff[1])
+        response = self.client.get(reverse(data.LIST_PATH, args=[_list1.pk]))
+        self.assertContains(response, record1.name)
+        self.assertContains(response, record2.name)
+        self.assertContains(response, record3.name)
     
     def test_revision_page_has_form_for_search_record(self):
         err, group_and_staff = utils.create_group_and_staff(
