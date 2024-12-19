@@ -65,4 +65,15 @@ def create_list_view(request, pk):
     return render(request, template.CREATE_LIST_HTML, {'form': list_form, 'revision_id': pk})
 
 def list_view(request, pk):
-    return render(request, template.LIST_HTML)
+    if not request.user.is_authenticated:
+        return redirect(data.LOGIN_PATH)
+    if not request.method == 'GET':
+        return redirect(data.ABOUT_PATH)
+    return render(request, template.LIST_HTML, {'list_id': pk})
+
+def create_record_view(request, pk):
+    if not request.user.is_authenticated:
+        return redirect(data.LOGIN_PATH)
+    if not request.method == 'GET':
+        return redirect(data.ABOUT_PATH)
+    return render(request, template.CREATE_RECORD_HTML)
