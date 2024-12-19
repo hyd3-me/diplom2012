@@ -5,4 +5,9 @@
 {% if list_id %}
 <a href='{% url "create_record" list_id %}'>create record</a>
 {% endif %}
+{% if qs_records %}
+{% for record in qs_records %}
+    <li>{{ record.name }} - {{ record.count }} - {{ record.barcode }}</li>
+{% endfor %}
+{% endif %}
 {% endblock %}
