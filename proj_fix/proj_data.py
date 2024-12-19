@@ -45,6 +45,10 @@ CREATE_REVISION_SUCCESS = 'the revision was successfully created'
 LIST_CREATED_SUCCESS    = 'the list has been created successfully'
 REVISION_NOT_FOUND      = 'revision not found'
 CREATE_LIST_FAILED      = 'failed to create a list'
+LIST_NOT_FOUND          = 'the list was not found'
+STAFF_NOT_FOUND         = 'the position for the user was not found'
+CREATE_RECORD_FAILED    = 'failed to create a record'
+CREATE_RECORD_SUCCESS   = 'the record was created successfully'
 
 ## user data for test
 USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')
