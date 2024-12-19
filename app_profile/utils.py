@@ -121,6 +121,18 @@ def get_all_lists_from_revision(revision_obj):
 @try_me
 def get_all_records_from_list(list_obj):
     return 0, list_obj.record_set.all()
+
+@try_me
+def find_records_from_revision(revision_obj, searched_barcode):
+    result_list = []
+    err, qs_lists = get_all_lists_from_revision(revision_obj)
+    for _list in qs_lists:
+        err, qs_records = get_all_records_from_list(_list)
+        for record in qs_records:
+            if record.barcode == searched_barcode:
+                result_list.append({'record': record, 'list': _list})
+    return 0, result_list
+
 @try_me
 def create_record(name, barcode, count, note, list_obj, staff_obj):
     return 0, rev_models.Record.objects.create(
