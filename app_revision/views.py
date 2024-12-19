@@ -14,7 +14,9 @@ def revision_view(request, pk):
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
     search_record_form = SearchRecordForm()
-    return render(request, template.REVISION_HTML, {'revision_id': pk, 'form': search_record_form})
+    err, revision = utils.get_revision_by_id(pk)
+    err, qs_lists = utils.get_all_lists_from_revision(revision)
+    return render(request, template.REVISION_HTML, {'revision_id': pk, 'form': search_record_form, 'qs_lists': qs_lists})
 
 def create_revision_view(request, pk):
     if not request.user.is_authenticated:
