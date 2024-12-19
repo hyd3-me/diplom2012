@@ -111,6 +111,10 @@ def get_revision_by_id(revision_id):
     return 0, rev_models.Revision.objects.get(pk=revision_id)
 
 @try_me
+def get_list_by_id(list_id):
+    return 0, rev_models.List.objects.get(pk=list_id)
+
+@try_me
 def create_record(name, barcode, count, note, list_obj, staff_obj):
     return 0, rev_models.Record.objects.create(
         name = name,
