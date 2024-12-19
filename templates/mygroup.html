@@ -8,10 +8,10 @@
         <a href="{% url 'create_revision' group_id %}">create revision</a>
         {% endif %}
     </div>
-    {% if revisions %}
+    {% if qs_revisions %}
     <ul>
-        {% for revision in revisions %}
-        <li><a href="{% url 'mygroup' group.pk %}">{{ group.name }}</a></li>
+        {% for revision in qs_revisions %}
+        <li><a href="{% url 'revision' revision.pk %}">{{ revision.name|date:"Y-m-d" }}</a></li>
         {% endfor %}
     </ul>
     {% endif %}
