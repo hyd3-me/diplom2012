@@ -108,3 +108,14 @@ class TestRevision(BaseUser):
         err, list_ = utils.create_list(data.LIST1, revision)
         response = self.client.get(reverse(data.LIST_PATH, args=[list_.pk]))
         self.assertContains(response,  f'<a href="{reverse(data.CREATE_RECORD_PATH, args=[list_.pk])}">create record</a>', html=True)
+
+    def test_can_get_create_record_page(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, group_and_staff[0])
+        err, list_ = utils.create_list(data.LIST1, revision)
+        url = reverse(data.CREATE_RECORD_PATH, args=[list_.pk])
+        response = self.client.get(url, args=[list_.pk])
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, template.CREATE_RECORD_HTML)
