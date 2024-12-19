@@ -109,3 +109,13 @@ def create_list(name, revision):
 @try_me
 def get_revision_by_id(revision_id):
     return 0, rev_models.Revision.objects.get(pk=revision_id)
+
+@try_me
+def create_record(name, barcode, count, note, list_obj, staff_obj):
+    return 0, rev_models.Record.objects.create(
+        name = name,
+        barcode = barcode,
+        count = count,
+        note = note,
+        owner = staff_obj,
+        _list = list_obj)
