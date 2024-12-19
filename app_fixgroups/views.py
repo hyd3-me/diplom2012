@@ -76,4 +76,6 @@ def mygroup_view(request, pk):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
-    return render(request, template.MYGROUP_HTML, {'group_id': pk})
+    err, group = utils.get_group_by_id(pk)
+    err, qs_revisions = utils.get_all_revisions_from_group(group)
+    return render(request, template.MYGROUP_HTML, {'group_id': pk, 'qs_revisions': qs_revisions})
