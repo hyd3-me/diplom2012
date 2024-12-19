@@ -68,3 +68,13 @@ class TestRevision(BaseUser):
         response = self.client.get(reverse(data.CREATE_LIST_PATH, args=[revision.pk]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.CREATE_LIST_HTML)
+    
+    def test_can_create_list_via_http(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, group_and_staff[0])
+        url = reverse(data.CREATE_LIST_PATH, args=[revision.pk])
+        response = self.client.post(url, {'name': data.LIST1, }, follow=True)
+        self.assertRedirects(response, reverse(data.REVISION_PATH, args=[revision.pk]))
+        self.assertContains(response, data.LIST_CREATED_SUCCESS)
