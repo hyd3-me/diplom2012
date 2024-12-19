@@ -111,6 +111,10 @@ def get_revision_by_id(revision_id):
     return 0, rev_models.Revision.objects.get(pk=revision_id)
 
 @try_me
+def get_all_revisions_from_group(group_obj):
+    return 0, group_obj.revision_set.all()
+
+@try_me
 def get_list_by_id(list_id):
     return 0, rev_models.List.objects.get(pk=list_id)
 
