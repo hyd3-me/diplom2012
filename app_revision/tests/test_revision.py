@@ -98,6 +98,17 @@ class TestRevision(BaseUser):
         self.assertRedirects(response, reverse(data.REVISION_PATH, args=[revision.pk]))
         self.assertContains(response, data.LIST_CREATED_SUCCESS)
     
+    def test_can_get_created_lists_on_revision_page(self):
+        err, self.group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, self.group_and_staff[0])
+        err, _list1 = utils.create_list(data.LIST1, revision)
+        err, _list2 = utils.create_list(data.LIST2, revision)
+        response = self.client.get(reverse(data.REVISION_PATH, args=[revision.pk]))
+        self.assertContains(response, _list1.name)
+        pass
+    
     def test_can_get_list_page(self):
         err, group_and_staff = utils.create_group_and_staff(
             data.GROUP1[0], data.GROUP1[1], self.user)
