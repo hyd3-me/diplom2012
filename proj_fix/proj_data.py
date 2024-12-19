@@ -66,6 +66,7 @@ LIST1   = 'list_name1'
 LIST2   = 'list_name2'
 
 RECORD1     = 'record1'
+RECORD2     = 'record2'
 
 GOOD_COUNT1 = '3'
 TEST_NOTE1  = 'test_note1'
