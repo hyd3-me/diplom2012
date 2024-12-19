@@ -22,6 +22,7 @@ CREATE_REVISION_PATH    = 'create_revision'
 CREATE_LIST_PATH        = 'create_list'
 LIST_PATH               = 'list'
 CREATE_RECORD_PATH      = 'create_record'
+SEARCH_RECORD_PATH      = 'search_record'
 
 
 ## message list for users
@@ -49,6 +50,8 @@ LIST_NOT_FOUND          = 'the list was not found'
 STAFF_NOT_FOUND         = 'the position for the user was not found'
 CREATE_RECORD_FAILED    = 'failed to create a record'
 CREATE_RECORD_SUCCESS   = 'the record was created successfully'
+INSUFFICIENT_DATA       = 'insufficient data'
+GET_RECORDS_ERROR       = 'error in data collection'
 
 ## user data for test
 USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')
