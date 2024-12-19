@@ -21,6 +21,7 @@ REVISION_PATH           = 'revision'
 CREATE_REVISION_PATH    = 'create_revision'
 CREATE_LIST_PATH        = 'create_list'
 LIST_PATH               = 'list'
+CREATE_RECORD_PATH      = 'create_record'
 
 
 ## message list for users
