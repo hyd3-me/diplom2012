@@ -149,3 +149,21 @@ class TestRevision(BaseUser):
             }, follow=True)
         self.assertRedirects(response, reverse(data.CREATE_RECORD_PATH, args=[_list.pk]))
         self.assertContains(response, data.CREATE_RECORD_SUCCESS)
+    
+    def test_can_get_records_by_barcode_from_revision(self):
+        err, self.group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, self.group_and_staff[0])
+        err, _list1 = utils.create_list(data.LIST1, revision)
+        err, _list2 = utils.create_list(data.LIST2, revision)
+        err, record1 = utils.create_record(data.RECORD1, data.BARCODE1, data.GOOD_COUNT1, data.TEST_NOTE1, _list1, self.group_and_staff[1])
+        err, record2 = utils.create_record(data.RECORD1, data.BARCODE1, data.GOOD_COUNT1, data.TEST_NOTE1, _list2, self.group_and_staff[1])
+        err, record3 = utils.create_record(data.RECORD2, data.BARCODE2, data.GOOD_COUNT1, data.TEST_NOTE1, _list2, self.group_and_staff[1])
+        url = reverse(data.SEARCH_RECORD_PATH) + f'?revision_id={revision.pk}&barcode={data.BARCODE1}'
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, template.SEARCH_RECORD_HTML)
+        self.assertContains(response, record1.name)
+        self.assertContains(response, _list1.name)
+        self.assertContains(response, _list2.name)
