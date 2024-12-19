@@ -40,3 +40,14 @@ class RevisionTest(TestCase):
         err, _list_from_db = utils.get_list_by_id(_list.pk)
         self.assertFalse(err)
         self.assertEqual(_list, _list_from_db)
+    
+    def test_can_get_all_list_from_revision(self):
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, self.group_and_staff[0])
+        err, _list1 = utils.create_list(data.LIST1, revision)
+        err, _list2 = utils.create_list(data.LIST2, revision)
+        err, qs_lists = utils.get_all_lists_from_revision(revision)
+        self.assertFalse(err)
+        self.assertEqual(qs_lists.count(), 2)
+        self.assertIn(_list1, qs_lists)
+        self.assertIn(_list2, qs_lists)
