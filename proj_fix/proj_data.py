@@ -20,6 +20,7 @@ RECORDSDATE_PATH        = 'recordsdate'
 REVISION_PATH           = 'revision'
 CREATE_REVISION_PATH    = 'create_revision'
 CREATE_LIST_PATH        = 'create_list'
+LIST_PATH               = 'list'
 
 
 ## message list for users
