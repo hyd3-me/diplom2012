@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>create_list</p>
+{% if form %}
+<form method='POST' action='{% url "create_record" list_id %}'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">create record</button>
+</form>
+{% endif %}
+{% endblock %}
