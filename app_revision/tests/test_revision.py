@@ -119,3 +119,15 @@ class TestRevision(BaseUser):
         response = self.client.get(url, args=[list_.pk])
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template.CREATE_RECORD_HTML)
+
+    def test_create_record_page_contain_form(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, group_and_staff[0])
+        err, list_ = utils.create_list(data.LIST1, revision)
+        url = reverse(data.CREATE_RECORD_PATH, args=[list_.pk])
+        response = self.client.get(url, args=[list_.pk])
+        self.assertIsInstance(response.context['form'], forms.CreateRecordForm)
+        form = forms.CreateRecordForm()
+        self.assertContains(response, form.as_p(), html=True)
