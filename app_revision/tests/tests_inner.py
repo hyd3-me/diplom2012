@@ -63,3 +63,15 @@ class RevisionTest(TestCase):
         self.assertEqual(qs_records.count(), 2)
         self.assertIn(record1, qs_records)
         self.assertIn(record2, qs_records)
+    
+    def test_can_find_records_by_barcode_in_revision(self):
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, self.group_and_staff[0])
+        err, _list1 = utils.create_list(data.LIST1, revision)
+        err, _list2 = utils.create_list(data.LIST2, revision)
+        err, record1 = utils.create_record(data.RECORD1, data.BARCODE1, data.GOOD_COUNT1, data.TEST_NOTE1, _list1, self.group_and_staff[1])
+        err, record2 = utils.create_record(data.RECORD1, data.BARCODE1, data.GOOD_COUNT1, data.TEST_NOTE1, _list2, self.group_and_staff[1])
+        err, record3 = utils.create_record(data.RECORD2, data.BARCODE2, data.GOOD_COUNT1, data.TEST_NOTE1, _list2, self.group_and_staff[1])
+        err, qs_wanted_records = utils.find_records_from_revision(revision, data.BARCODE1)
+        self.assertFalse(err)
+        self.assertEqual(len(qs_wanted_records), 2)
