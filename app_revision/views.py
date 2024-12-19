@@ -75,6 +75,31 @@ def create_record_view(request, pk):
     if not request.user.is_authenticated:
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
-        return redirect(data.ABOUT_PATH)
+        if not request.method == 'POST':
+            return redirect(data.PROFILE_PATH)
+        create_form = CreateRecordForm(request.POST)
+        if create_form.is_valid():
+            err, _list = utils.get_list_by_id(pk)
+            if not err:
+                err, staff = utils.get_staff_by_user(request.user)
+                if not err:
+                    err, record = utils.create_record(
+                        create_form.cleaned_data.get('name'),
+                        create_form.cleaned_data.get('barcode'),
+                        create_form.cleaned_data.get('count'),
+                        create_form.cleaned_data.get('note'),
+                        _list,
+                        staff[0],)
+                    if not err:
+                        messages.success(request, f'{data.CREATE_RECORD_SUCCESS}')
+                        return (redirect(reverse(data.CREATE_RECORD_PATH, args=[pk])))
+                    else:
+                        messages.error(request, f'{data.CREATE_RECORD_FAILED}')
+                else:
+                    message.error(request, f'{data.STAFF_NOT_FOUND}')
+            else:
+                messages.error(request, f'{data.LIST_NOT_FOUND}')
+        else:
+            messages.error(request, f'{data.INVALID_FORM}')
     record_form = CreateRecordForm()
     return render(request, template.CREATE_RECORD_HTML, {'form': record_form, 'list_id': pk})
