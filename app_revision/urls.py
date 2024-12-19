@@ -9,4 +9,5 @@ urlpatterns = [
     path(f'{data.CREATE_REVISION_PATH}/<int:pk>/', views.create_revision_view, name=data.CREATE_REVISION_PATH),
     path(f'{data.CREATE_LIST_PATH}/<int:pk>/', views.create_list_view, name=data.CREATE_LIST_PATH),
     path(f'{data.LIST_PATH}/<int:pk>/', views.list_view, name=data.LIST_PATH),
+    path(f'{data.CREATE_RECORD_PATH}/<int:pk>/', views.create_record_view, name=data.CREATE_RECORD_PATH),
     ]
