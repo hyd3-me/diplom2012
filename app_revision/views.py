@@ -63,3 +63,6 @@ def create_list_view(request, pk):
             messages.error(request, f'{data.INVALID_FORM}')
     list_form = CreateListForm()
     return render(request, template.CREATE_LIST_HTML, {'form': list_form, 'revision_id': pk})
+
+def list_view(request, pk):
+    return render(request, template.LIST_HTML)
