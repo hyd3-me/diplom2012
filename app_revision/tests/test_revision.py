@@ -131,3 +131,21 @@ class TestRevision(BaseUser):
         self.assertIsInstance(response.context['form'], forms.CreateRecordForm)
         form = forms.CreateRecordForm()
         self.assertContains(response, form.as_p(), html=True)
+    
+    def test_can_create_record_via_http(self):
+        err, group_and_staff = utils.create_group_and_staff(
+            data.GROUP1[0], data.GROUP1[1], self.user)
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, group_and_staff[0])
+        err, _list = utils.create_list(data.LIST1, revision)
+        url = reverse(data.CREATE_RECORD_PATH, args=[_list.pk])
+        response = self.client.get(url, args=[_list.pk])
+        url = reverse(data.CREATE_RECORD_PATH, args=[_list.pk])
+        response = self.client.post(url, {
+            'name': data.RECORD1,
+            'barcode': data.BARCODE1,
+            'count': data.GOOD_COUNT1,
+            'note': data.TEST_NOTE1,
+            }, follow=True)
+        self.assertRedirects(response, reverse(data.CREATE_RECORD_PATH, args=[_list.pk]))
+        self.assertContains(response, data.CREATE_RECORD_SUCCESS)
