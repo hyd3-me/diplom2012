@@ -51,3 +51,15 @@ class RevisionTest(TestCase):
         self.assertEqual(qs_lists.count(), 2)
         self.assertIn(_list1, qs_lists)
         self.assertIn(_list2, qs_lists)
+    
+    def test_can_get_all_records_from_list(self):
+        err, today = utils.get_today()
+        err, revision = utils.create_revision(today, self.group_and_staff[0])
+        err, _list = utils.create_list(data.LIST1, revision)
+        err, record1 = utils.create_record(data.RECORD1, data.BARCODE1, data.GOOD_COUNT1, data.TEST_NOTE1, _list, self.group_and_staff[1])
+        err, record2 = utils.create_record(data.RECORD2, data.BARCODE2, data.GOOD_COUNT1, data.TEST_NOTE1, _list, self.group_and_staff[1])
+        err, qs_records = utils.get_all_records_from_list(_list)
+        self.assertFalse(err)
+        self.assertEqual(qs_records.count(), 2)
+        self.assertIn(record1, qs_records)
+        self.assertIn(record2, qs_records)
