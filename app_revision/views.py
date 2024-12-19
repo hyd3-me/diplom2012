@@ -3,7 +3,7 @@ from django.contrib import messages
 
 from proj_fix import proj_data as data, template_name as template
 from app_profile import utils
-from .forms import CreateRevisionForm, CreateListForm, CreateRecordForm
+from .forms import CreateRevisionForm, CreateListForm, CreateRecordForm, SearchRecordForm
 
 # Create your views here.
 
@@ -13,7 +13,8 @@ def revision_view(request, pk):
         return redirect(data.LOGIN_PATH)
     if not request.method == 'GET':
         return redirect(data.ABOUT_PATH)
-    return render(request, template.REVISION_HTML, {'revision_id': pk})
+    search_record_form = SearchRecordForm()
+    return render(request, template.REVISION_HTML, {'revision_id': pk, 'form': search_record_form})
 
 def create_revision_view(request, pk):
     if not request.user.is_authenticated:
