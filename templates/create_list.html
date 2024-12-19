@@ -2,4 +2,11 @@
 
 {% block content %}
 <p>create_list</p>
+{% if form %}
+<form method='POST' action='{% url "create_list" revision_id %}'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">create list</button>
+</form>
+{% endif %}
 {% endblock %}
