@@ -61,4 +61,5 @@ def create_list_view(request, pk):
                 messages.error(request, f'{data.REVISION_NOT_FOUND}')
         else:
             messages.error(request, f'{data.INVALID_FORM}')
-    return render(request, template.CREATE_LIST_HTML, {'revision_id': pk})
+    list_form = CreateListForm()
+    return render(request, template.CREATE_LIST_HTML, {'form': list_form, 'revision_id': pk})
