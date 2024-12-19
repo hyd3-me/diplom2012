@@ -41,6 +41,8 @@ ADDDATE_ERROR           = 'couldn"t add a date'
 CREATE_REVISION_FAILED  = 'failed to create a revision'
 CREATE_REVISION_SUCCESS = 'the revision was successfully created'
 LIST_CREATED_SUCCESS    = 'the list has been created successfully'
+REVISION_NOT_FOUND      = 'revision not found'
+CREATE_LIST_FAILED      = 'failed to create a list'
 
 ## user data for test
 USER1   = ('maV3ry5Tr0ngUsr1', 'veryHeavySTRpwd1')
