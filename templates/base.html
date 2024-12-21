@@ -2,56 +2,64 @@
 <html lang="ru">
 
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>{% block t1 %}login{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block t1 %}WRFIX{% endblock %}</title>
+    <link rel='shortcut icon' type='image/png' href='/static/favicon.ico' />
+    <link rel='stylesheet' type='text/css' href='/static/css/wrfix.css'>
     {% block ext_head %}{% endblock %}
 </head>
 
 <body>
     <div class='conteiner'>
-        <div class='top_line'>
-            {% url 'taskqq' as taskqq %}
-            <div class='align_right'>
-                {% block userbar %}
-                {% if user.is_authenticated %}
-                <button class='userbar_btn btn btn_head'><a href='{% url "profile" %}'>{{ user.username }}</a></button>
-                {% else %}
-                <button class='userbar_btn btn btn_head' id='id_login'><a href='{% url "login" %}'>login</a></button>
-                {% endif %}
-                {% endblock %}
-            </div>
-        </div>
-        <div>
-            <h1>{% block h1 %}refApp{% endblock %}</h1>
-            <div>{% block navigation %}{% endblock %}</div>
-        </div>
-        <div class='content_box'>
-            <div class=message_me>
-                {% block django_messages %}
-                {% if messages %}
-                <ul class='messages'>
-                    {% for message in messages %}
-                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message}}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                {% endblock %}
-
-                {% block form_error %}
-                {% if form %}
-                {% if form.errors %}
-                <div class='btn_head'>
-                    {{ form.errors }}
+        <header>
+            <div class='top_line'>
+                {% url 'taskqq' as taskqq %}
+                <button class='userbar_btn btn btn_head'><a href='{% url "profile" %}'>wrfix</a></button>
+                <div class='align_right'>
+                    {% block userbar %}
+                    {% if user.is_authenticated %}
+                    <button class='userbar_btn btn btn_head'><a href='{% url "profile" %}'>{{ user.username }}</a></button>
+                    {% else %}
+                    <button class='userbar_btn btn btn_head' id='id_login'><a
+                            href='{% url "login" %}'>login</a></button>
+                    {% endif %}
+                    {% endblock %}
                 </div>
-                {% endif %}
-                {% endif %}
-                {% endblock %}
             </div>
+        </header>
+        <main>
             <div>
-                {% block content %}{% endblock %}
+                <h1>{% block h1 %}WRFIX{% endblock %}</h1>
+                <nav class='nav_me'>{% block navigation %}{% endblock %}</nav>
             </div>
-        </div>
+            <div class='content_box'>
+                <div class=message_me>
+                    {% block django_messages %}
+                    {% if messages %}
+                    <ul class='messages'>
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endblock %}
+
+                    {% block form_error %}
+                    {% if form %}
+                    {% if form.errors %}
+                    <div class='btn_head'>
+                        {{ form.errors }}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    {% endblock %}
+                </div>
+                <div>
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </main>
     </div>
 </body>
 

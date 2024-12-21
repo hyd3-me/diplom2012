@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block userbar %}
+<button class='userbar_btn btn btn_head' id='id_login'><a href='{% url "register" %}'>new+</a></button>
 {% endblock %}
 
 {% block h1 %}
@@ -18,5 +19,4 @@ login
     <p><input type='submit' value='login' /></p>
 </form>
 {% endif %}
-<p><a href='/register'>new+</a></p>
 {% endblock %}
